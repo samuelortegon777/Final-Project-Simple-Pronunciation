@@ -1,0 +1,131 @@
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+  body {
+    background: linear-gradient(135deg, #1E1E2F, #FF4500);
+    font-family: 'Poppins', sans-serif;
+  }
+  .register-box {
+    max-width: 450px;
+    margin: 6% auto;
+    background: #fff;
+    color: #333;
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.35);
+    text-align: center;
+  }
+  .register-box h2 {
+    color: #FF4500;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    font-size: 1.8rem;
+  }
+  .register-box p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+  .form-control {
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 1rem;
+  }
+  .btn-custom {
+    background: #00C853;
+    border: none;
+    padding: 14px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    border-radius: 12px;
+    color: white;
+    transition: 0.3s;
+  }
+  .btn-custom:hover {
+    background: #00a743;
+    transform: scale(1.05);
+  }
+  .login-link {
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
+  .login-link a {
+    color: #FF4500;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<!-- Register Form -->
+<form action="./php/register.php" method="POST" class="register-box">
+  <h2 class="mb-4"><i class="bi bi-stars"></i> Create Your Account <i class="bi bi-stars"></i></h2>
+  <p class="mb-5">Join us today and unlock your fitness journey <i class="bi bi-lightning-charge-fill"></i></p>
+
+  <!-- Full Name -->
+  <div class="mb-4 text-start">
+    <label for="fullname" class="form-label"><i class="bi bi-person-badge-fill"></i> Full Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="fullname"
+      name="fullname"
+      placeholder="e.g. John Doe"
+      required>
+  </div>
+
+  <!-- Email -->
+  <div class="mb-4 text-start">
+    <label for="email" class="form-label"><i class="bi bi-envelope-fill"></i> Email Address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="e.g. johndoe@example.com"
+      required>
+  </div>
+
+  <!-- Username -->
+  <div class="mb-4 text-start">
+    <label for="username" class="form-label"><i class="bi bi-person-fill"></i> Choose a Username</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      name="username"
+      placeholder="e.g. fitness_hero"
+      required>
+  </div>
+
+  <!-- Password -->
+  <div class="mb-5 text-start">
+    <label for="password" class="form-label"><i class="bi bi-key-fill"></i> Create a Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      placeholder="At least 6 characters"
+      required>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="d-grid mb-4">
+    <button type="submit" class="btn btn-custom">
+      <i class="bi bi-rocket-takeoff-fill"></i> Register Now
+    </button>
+  </div>
+
+  <!-- Extra link -->
+  <div class="login-link">
+    Already have an account? <i class="bi bi-arrow-right-circle-fill"></i>
+    <a href="./index.html">Log in here</a>
+  </div>
+</form>

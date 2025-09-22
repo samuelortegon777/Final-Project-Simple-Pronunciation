@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAY IT RIGHT</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fun Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #ffecd2, #fcb69f);
+            font-family: 'Fredoka One', cursive;
+            text-align: center;
+            padding: 50px;
+        }
+        h2 {
+            font-size: 3rem;
+            color: #ff5722;
+            text-shadow: 2px 2px #fff;
+            margin-bottom: 20px;
+        }
+        #palabra {
+            font-size: 1.5rem;
+            border: 3px solid #ff9800;
+            border-radius: 15px;
+            padding: 10px;
+            width: 60%;
+            margin-bottom: 20px;
+            box-shadow: 2px 2px 10px rgba(255, 152, 0, 0.4);
+        }
+        .btn-fun {
+            background-color: #ff9800;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: transform 0.2s ease, background-color 0.3s;
+        }
+        .btn-fun:hover {
+            background-color: #f57c00;
+            transform: scale(1.1);
+        }
+        .link-back {
+            display: inline-block;
+            margin-top: 30px;
+            font-size: 1.3rem;
+            color: #ff5722;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .link-back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🎯 SAY IT RIGHT 🎯</h2>
+        <input type="text" id="palabra" placeholder="Type your word here...">
+        <br>
+        <button class="btn btn-fun mt-3" onclick="dividir()">🚀 DIVIDE</button>
+        <br>
+        <a href="./index.html" class="link-back">⬅️ Go Back to Menu</a>
+    </div>
+
+    <div id="resultado" class="mt-3"></div>
+    <script>
+        async function dividir() {
+            const palabra =document.getElementById("palabra").value.trim().toLowerCase();
+            const resultadoDiv = document.getElementById("resultado");
+            if(!palabra){
+                resultadoDiv.innerHTML = "<div> PLEASE WRITE A WORD </div>";
+                return;
+            }
+
+            try{
+                const res =await fetch("json/palabras.json");
+                const data = await res.json();
+                if(data[palabra]){
+                    resultadoDiv.innerHTML ="";
+
+                    const fullBtn= document.createElement("button");
+                    fullBtn.textContent= "hear the complete word";
+                    fullBtn.className = "btn btn-primarly m-2"
+                    fullBtn.onclick = () =>pronunciar(palabra);
+                    resultadoDiv.appendChild(fullBtn);
+
+                    data [palabra].forEach(fonema =>{  
+                        const btn = document.createElement("button");
+                        btn.textContent=fonema;
+                        btn.className= "btn btn-success silabas-btn";
+                        btn.onclick = ()=> pronunciar(fonema);
+                        resultadoDiv.appendChild(btn);
+
+                    })
+
+                }
+                else{
+                    resultadoDiv.innerHTML ="<div class= 'alert alert-danger'> PALABRA NO ENCONTRADA EN LA BASE DE DATOS </div>";
+                }
+            }
+            catch (err){
+                 resultadoDiv.innerHTML ="<div 'alert alert-danger'> ERROR CARGANDO LAS PALABRAS </div>";
+            }
+        }
+        function pronunciar (texto){
+            const utterance = new SpeechSynthesisUtterance(texto);
+            utterance.lang = "en-US";
+            utterance.rate =0.9;
+            speechSynthesis.speak(utterance);
+
+
+          
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
